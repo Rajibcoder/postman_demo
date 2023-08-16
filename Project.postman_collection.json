@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "9ac1ea57-816c-48fa-b522-7e0413e715f4",
+		"name": "Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29056131",
+		"_collection_link": "https://lunar-spaceship-294946.postman.co/workspace/simplilearn_aug10~a0c7ad7a-1691-4556-9bc8-c48faa3f1efe/collection/29056131-9ac1ea57-816c-48fa-b522-7e0413e715f4?action=share&source=collection_link&creator=29056131"
+	},
+	"item": [
+		{
+			"name": "LondonWeatherReport",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate the coord object\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.coord).to.exist.and.to.be.an('object');\r",
+							"    pm.expect(responseData.coord.lon).to.exist.and.to.be.a('number');\r",
+							"    pm.expect(responseData.coord.lat).to.exist.and.to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate the main object\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.main).to.exist.and.to.be.an('object');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate the wind object\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    // Check if wind property exists\r",
+							"    pm.expect(responseData).to.have.property('wind');\r",
+							"\r",
+							"    // Check if wind is an object\r",
+							"    pm.expect(responseData.wind).to.be.an('object');\r",
+							"\r",
+							"    // Check if wind object has the required properties\r",
+							"    const windProperties = ['speed', 'deg'];\r",
+							"    windProperties.forEach(function (property) {\r",
+							"        pm.expect(responseData.wind).to.have.property(property);\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22",
+					"protocol": "https",
+					"host": [
+						"samples",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "London,uk"
+						},
+						{
+							"key": "appid",
+							"value": "b6907d289e10d714a6e88b30761fae22"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
